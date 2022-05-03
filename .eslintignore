@@ -1,0 +1,4 @@
+/src/database/
+seeders
+/src/tests/
+/src/coverage

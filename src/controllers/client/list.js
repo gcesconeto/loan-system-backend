@@ -4,7 +4,8 @@ const { client } = require('../../services');
 
 module.exports = async (req, res, next) => {
   try {
-    const clientList = await client.list();
+    const { full = false } = req.params;
+    const clientList = await client.list(full);
     res.status(OK).json(clientList);
   } catch (err) {
     next(err);

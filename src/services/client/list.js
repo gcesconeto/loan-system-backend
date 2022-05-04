@@ -1,7 +1,12 @@
-const { user } = require('../../database/models');
+const { client } = require('../../database/models');
 
-module.exports = async () => {
-  const clients = await user.findAll({});
-
+module.exports = async (full) => {
+  let filter = {};
+  if (full) {
+    filter = {
+      attributes: ['id', 'name'],
+    };
+  }
+  const clients = await client.findAll(filter);
   return clients;
 };

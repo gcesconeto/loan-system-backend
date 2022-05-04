@@ -10,14 +10,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      loan.belongsTo(models.client, { foreignKey: 'clientId'})
     }
   };
   loan.init({
-    amount: DataTypes.NUMBER
+    clientId: DataTypes.INTEGER,
+    amount: DataTypes.NUMBER,
+    startDate: DataTypes.DATE,
+    paymentDate: DataTypes.DATE,
+    rate: DataTypes.FLOAT,
   }, {
     sequelize,
     modelName: 'loan',
+    tableName: 'loans',
+    timestamps: false,
   });
   return loan;
 };

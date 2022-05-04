@@ -10,6 +10,6 @@ module.exports = Joi.object(
     neighborhood: Joi.string().required(),
     state: Joi.string().required(),
     rg: Joi.string().min(5).required(),
-    cp: Joi.string().length(11).required(),
+    cpf: Joi.string().length(11).required(),
   },
 );

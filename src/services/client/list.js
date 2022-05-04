@@ -1,8 +1,9 @@
 const { client } = require('../../database/models');
 
 module.exports = async (full) => {
+  console.log(full);
   let filter = {};
-  if (full) {
+  if (!full) {
     filter = {
       attributes: ['id', 'name'],
     };

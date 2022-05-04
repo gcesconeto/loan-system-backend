@@ -3,28 +3,25 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class loan extends Model {
+  class ledger extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      loan.belongsTo(models.client, { foreignKey: 'clientId'})
-      loan.hasMany(models.ledger)
+      ledger.belongsTo(models.loan, { foreignKey: 'loanId'})
     }
   };
-  loan.init({
-    clientId: DataTypes.INTEGER,
-    amount: DataTypes.NUMBER,
-    startDate: DataTypes.DATE,
-    paymentDate: DataTypes.DATE,
-    rate: DataTypes.FLOAT,
+  ledger.init({
+    loanId: DataTypes.INTEGER,
+    amount: DataTypes.FLOAT,
+    date: DataTypes.DATEONLY
   }, {
     sequelize,
-    modelName: 'loan',
-    tableName: 'loans',
+    modelName: 'ledger',
+    tableName: 'ledger',
     timestamps: false,
   });
-  return loan;
+  return ledger;
 };

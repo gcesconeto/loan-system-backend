@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   ledger.init({
     loanId: DataTypes.INTEGER,
     amount: DataTypes.FLOAT,
-    date: DataTypes.DATEONLY
+    date: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'ledger',

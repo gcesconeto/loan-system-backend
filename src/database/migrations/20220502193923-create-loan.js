@@ -21,10 +21,10 @@ module.exports = {
           type: Sequelize.FLOAT
         },
         startDate: {
-          type: Sequelize.DATEONLY
+          type: Sequelize.DATE
         },
         paymentDate: {
-          type: Sequelize.DATEONLY
+          type: Sequelize.DATE
         },
         rate: {
           type: Sequelize.FLOAT

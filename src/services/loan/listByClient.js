@@ -1,11 +1,9 @@
-const { Op } = require('sequelize');
-
 const { loan, ledger } = require('../../database/models');
 const { loanProcessor } = require('../helpers');
 
-module.exports = async (start, end) => {
+module.exports = async (clientId) => {
     const filter = {
-        where: { startDate: { [Op.between]: [start, end] } },
+        where: { clientId },
         include: [{ model: ledger }],
     };
     const loanList = await loan.findAll(filter);

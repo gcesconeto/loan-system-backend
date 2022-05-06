@@ -1,7 +1,3 @@
-const create = require('./create');
-const list = require('./list');
-
-module.exports = {
-  create,
-  list,
-};
+module.exports.create = require('./create');
+module.exports.list = require('./list');
+module.exports.listByClient = require('./listByClient');

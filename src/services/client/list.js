@@ -1,7 +1,6 @@
 const { client } = require('../../database/models');
 
 module.exports = async (full) => {
-  console.log(full);
   let filter = {};
   if (!full) {
     filter = {

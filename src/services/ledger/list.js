@@ -6,6 +6,6 @@ module.exports = async (start, end) => {
     const filter = {
         where: { date: { [Op.between]: [start, end] } },
     };
-    const saleList = await ledger.findAll(filter);
-    return saleList;
+    const ledgerList = await ledger.findAll(filter);
+    return ledgerList;
 };

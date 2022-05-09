@@ -12,6 +12,6 @@ module.exports = (date) => {
       d: now.getDay(),
   };
   let months = ((today.y - startDate.y) * 12) + today.m - startDate.m;
-  if (today.d < startDate.d) months -= 1;
+  if (today.d < startDate.d && months > 0) months -= 1;
   return months;
 };

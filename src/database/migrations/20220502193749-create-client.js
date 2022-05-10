@@ -11,9 +11,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      email: {
-        type: Sequelize.STRING
-      },
       phone: {
         type: Sequelize.STRING
       },
@@ -33,6 +30,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       cpf: {
+        type: Sequelize.STRING
+      },
+      notes: {
         type: Sequelize.STRING
       },
     });

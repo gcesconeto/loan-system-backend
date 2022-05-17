@@ -1,10 +1,10 @@
-const { loan, ledger } = require('../../database/models');
+const { loan, ledger, client } = require('../../database/models');
 const { loanProcessor } = require('../helpers');
 
 module.exports = async (clientId) => {
     const filter = {
         where: { clientId },
-        include: [{ model: ledger }],
+        include: [{ model: ledger }, { model: client, attributes: ['name'] }],
     };
     const loanList = await loan.findAll(filter);
     if (loanList.length > 0) {

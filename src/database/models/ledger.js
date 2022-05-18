@@ -10,11 +10,13 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      ledger.belongsTo(models.loan, { foreignKey: 'loanId' , allowNull: true})
+      ledger.belongsTo(models.loan, { foreignKey: 'loanId' , allowNull: true })
+      ledger.belongsTo(models.settlement, { foreignKey: 'settlementId' , allowNull: true })
     }
   };
   ledger.init({
     loanId: DataTypes.INTEGER,
+    settlementId: DataTypes.INTEGER,
     amount: DataTypes.FLOAT,
     date: DataTypes.DATE
   }, {

@@ -15,6 +15,13 @@ module.exports = {
           key: 'id',
         },
       },
+      settlementId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'loans',
+          key: 'id',
+        },
+      },
       date: {
         type: Sequelize.DATE
       },

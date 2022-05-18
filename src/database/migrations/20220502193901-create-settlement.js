@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable(
-      'loans', 
+      'settlements', 
       {
         id: {
           allowNull: false,
@@ -17,29 +17,22 @@ module.exports = {
             key: 'id',
           },
         },
-        settlementId: {
-          type: Sequelize.INTEGER,
-          references: {
-            model: 'settlements',
-            key: 'id',
-          },
-        },
         amount: {
           type: Sequelize.FLOAT
         },
         startDate: {
           type: Sequelize.DATE
         },
-        paymentDate: {
-          type: Sequelize.DATE
+        installments: {
+          type: Sequelize.INTEGER
         },
-        rate: {
-          type: Sequelize.FLOAT
+        notes: {
+          type: Sequelize.STRING
         },
       }
     );
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('loans');
+    await queryInterface.dropTable('settlements');
   }
 };

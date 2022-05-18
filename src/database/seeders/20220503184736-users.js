@@ -5,8 +5,8 @@ module.exports = {
     'users',
     [
       {
-        email: 'admin@gmail.com',
-        password: '123456',
+        email: process.env.ADMIN_EMAIL,
+        password: process.env.ADMIN_PW,
       },
     ],
   ),

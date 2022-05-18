@@ -1,8 +1,8 @@
 const { ledger } = require('../../database/models');
 
-module.exports = async ({ loanId, date, amount }) => {
+module.exports = async ({ loanId, settlementId, date, amount }) => {
     const createdEntry = await ledger.create(
-        { loanId, date, amount },
+        { loanId, settlementId, date, amount },
     );
     return createdEntry;
 };

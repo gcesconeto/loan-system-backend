@@ -1,15 +1,17 @@
-const { loan, ledger, client } = require('../../database/models');
-const { loanProcessor } = require('../helpers');
+const { loan, ledger, client, settlement } = require('../../database/models');
+const { settlementProcessor } = require('../helpers');
 
 module.exports = async (clientId) => {
     const filter = {
         where: { clientId },
-        include: [{ model: ledger }, { model: client, attributes: ['name'] }],
+        include: [{ model: ledger }, { model: loan }, { model: client, attributes: ['name'] }],
     };
-    const loanList = await loan.findAll(filter);
-    if (loanList.length > 0) {
-        const processedList = loanList.map((selLoan) => loanProcessor(selLoan.toJSON()));
+    const settlementList = await settlement.findAll(filter);
+    if (settlementList.length > 0) {
+        const processedList = settlementList.map(
+            (selSettlement) => settlementProcessor(selSettlement.toJSON()),
+        );
         return processedList;
     }
-    return loanList;
+    return settlementList;
 };

@@ -9,6 +9,7 @@ module.exports = (selLoan) => {
   const totalPaid = balance + totalOwned;
   let status = 'em aberto';
   if (balance >= 0) status = 'quitado';
+  else if (selLoan.settlementId) status = 'acordo';
   return { 
       ...selLoan, 
       months, 

@@ -4,9 +4,9 @@ module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization;
 
-    const { name, email, role } = auth.verifyJwt(token);
+    const { email } = auth.verifyJwt(token);
 
-    req.user = { name, email, role };
+    req.user = { email };
 
     next();
   } catch (err) {

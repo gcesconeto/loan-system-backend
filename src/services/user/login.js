@@ -11,7 +11,7 @@ module.exports = async ({ email, password }) => {
   if (userFound.password !== password) throw errors.INCORRECT_PASSWORD;
 
   const userEmail = userFound.email;
-  const token = auth.generateJwt({ userEmail });
+  const token = auth.generateJwt({ email: userEmail });
 
   return token;
 };

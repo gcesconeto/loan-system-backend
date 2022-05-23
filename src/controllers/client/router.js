@@ -8,5 +8,6 @@ router.use(auth);
 router.post('/create', client.create, require('./create'));
 router.get('/list', require('./list'));
 router.get('/:clientId', require('./getById'));
+router.put('/:clientId', require('./update'));
 
 module.exports = router;

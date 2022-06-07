@@ -11,8 +11,7 @@ module.exports = (settl) => {
   let status = 'em atraso';
   if (monthsDelayed <= 0) status = 'em dia';
   if (balance >= 0) status = 'quitado';
-  return { 
-      ...settl, 
+  return { ...settl, 
       months,
       monthlyPayment,
       monthsDelayed,

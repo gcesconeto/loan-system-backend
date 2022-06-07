@@ -7,11 +7,11 @@ module.exports = (selLoan) => {
   const totalOwned = selLoan.amount + totalInterest;
   const balance = selLoan.ledgers.reduce((sum, entry) => sum + entry.amount, 0) - totalInterest;
   const totalPaid = balance + totalOwned;
-  let status = 'em aberto';
+  let status = 'em dia';
   if (balance >= 0) status = 'quitado';
   else if (selLoan.settlementId) status = 'acordo';
-  return { 
-      ...selLoan, 
+  else if (totalInterest - totalPaid > monthlyInterest) status = 'em atraso';
+  return { ...selLoan, 
       months, 
       monthlyInterest, 
       totalInterest, 

@@ -5,7 +5,7 @@ const { loanProcessor } = require('../helpers');
 
 module.exports = async (start, end) => {
     const filter = {
-        where: { startDate: { [Op.between]: [start, end] } },
+        where: { startDate: { [Op.and]: [{ [Op.gte]: start }, { [Op.lte]: end }] } },
         include: [{ model: ledger }, { model: client, attributes: ['name'] }],
     };
     const loanList = await loan.findAll(filter);

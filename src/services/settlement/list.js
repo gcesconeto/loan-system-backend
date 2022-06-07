@@ -5,7 +5,7 @@ const { settlementProcessor } = require('../helpers');
 
 module.exports = async (start, end) => {
     const filter = {
-        where: { startDate: { [Op.between]: [start, end] } },
+        where: { startDate: { [Op.and]: [{ [Op.gte]: start }, { [Op.lte]: end }] } },
         include: [{ model: ledger }, { model: loan }, { model: client, attributes: ['name'] }],
     };
     const settlementList = await settlement.findAll(filter);

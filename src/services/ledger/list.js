@@ -4,7 +4,7 @@ const { ledger, loan, settlement, client } = require('../../database/models');
 
 module.exports = async (start, end) => {
     const filter = {
-        where: { date: { [Op.between]: [start, end] } },
+        where: { date: { [Op.and]: [{ [Op.gte]: start }, { [Op.lte]: end }] } },
         include: [
             { 
                 model: loan, 

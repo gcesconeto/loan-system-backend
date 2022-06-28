@@ -36,6 +36,9 @@ module.exports = {
         rate: {
           type: Sequelize.FLOAT
         },
+        status: {
+          type: Sequelize.STRING
+        },
       }
     );
   },

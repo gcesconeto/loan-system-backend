@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     startDate: DataTypes.DATE,
     paymentDate: DataTypes.DATE,
     rate: DataTypes.FLOAT,
+    status: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'loan',

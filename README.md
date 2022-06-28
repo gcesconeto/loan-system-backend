@@ -27,7 +27,6 @@ These are the main technologies used:
 ## Using the API
 
 To use the API locally run `npm start` in the root directory, these endpoints will be available at http://localhost:3001/ (default)
-It is also hosted at https://voll-test-backend.herokuapp.com
 
 ### Endpoints
 

@@ -4,12 +4,12 @@ module.exports = (date) => {
   const startDate = {
       y: then.getFullYear(),
       m: then.getMonth(),
-      d: then.getDay(),
+      d: then.getDate(),
   };
   const today = {
       y: now.getFullYear(),
       m: now.getMonth(),
-      d: now.getDay(),
+      d: now.getDate(),
   };
   let months = ((today.y - startDate.y) * 12) + today.m - startDate.m;
   if (today.d < startDate.d && months > 0) months -= 1;

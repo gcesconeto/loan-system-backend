@@ -1,6 +1,7 @@
+/* eslint-disable max-lines-per-function */
 const getMonths = require('./getMonths');
 
-const getLastPaymentDate = (ledgers) => ledgers.sort((e1, e2) => e2.date - e1.date)[0];
+const getLastPaymentDate = (ledgers) => ledgers.sort((e1, e2) => e2.date - e1.date)[0].date;
 
 const calculateLoan = (loan, toLastPayment) => {
   const monthlyInterest = loan.amount * (loan.rate / 100);
@@ -26,11 +27,13 @@ const calculateLoan = (loan, toLastPayment) => {
 module.exports = (selLoan) => {
   let res = calculateLoan(selLoan, true);
   let status = 'em dia';
+  // console.log(res);
   if (res.balance <= 0) {
     res = calculateLoan(selLoan, false);
     if (selLoan.settlementId) status = 'acordo';
     else if (res.totalInterest - res.totalPaid > res.monthlyInterest) status = 'em atraso';
   } else status = 'quitado';
+
   return { 
     ...selLoan, 
     ...res, 

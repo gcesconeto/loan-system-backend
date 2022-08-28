@@ -28,7 +28,7 @@ module.exports = (selLoan) => {
   let res = calculateLoan(selLoan, true);
   let status = 'em dia';
   // console.log(res);
-  if (res.balance <= 0) {
+  if (res.balance < 0) {
     res = calculateLoan(selLoan, false);
     if (selLoan.settlementId) status = 'acordo';
     else if (res.totalInterest - res.totalPaid > res.monthlyInterest) status = 'em atraso';

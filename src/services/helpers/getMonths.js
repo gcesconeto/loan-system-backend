@@ -1,6 +1,6 @@
-module.exports = (date) => {
-  const then = new Date(date);
-  const now = new Date();
+module.exports = (start, end = new Date()) => {
+  const then = new Date(start);
+  const now = new Date(end);
   const startDate = {
       y: then.getFullYear(),
       m: then.getMonth(),

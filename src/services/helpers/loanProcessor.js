@@ -1,22 +1,39 @@
 const getMonths = require('./getMonths');
 
-module.exports = (selLoan) => {
-  const months = getMonths(selLoan.startDate);
-  const monthlyInterest = selLoan.amount * (selLoan.rate / 100);
+const getLastPaymentDate = (ledgers) => ledgers.sort((e1, e2) => e2.date - e1.date)[0];
+
+const calculateLoan = (loan, toLastPayment) => {
+  const monthlyInterest = loan.amount * (loan.rate / 100);
+  let months = getMonths(loan.startDate);
+  if (toLastPayment) {
+    const lastPaymentDate = getLastPaymentDate(loan.ledgers);
+    months = getMonths(loan.startDate, lastPaymentDate);
+  }
   const totalInterest = monthlyInterest * months;
-  const totalOwned = selLoan.amount + totalInterest;
-  const balance = selLoan.ledgers.reduce((sum, entry) => sum + entry.amount, 0) - totalInterest;
+  const totalOwned = loan.amount + totalInterest;
+  const balance = loan.ledgers.reduce((sum, entry) => sum + entry.amount, 0) - totalInterest;
   const totalPaid = balance + totalOwned;
+  return {
+    months, 
+    monthlyInterest, 
+    totalInterest, 
+    totalOwned, 
+    totalPaid, 
+    balance, 
+  };
+};
+
+module.exports = (selLoan) => {
+  let res = calculateLoan(selLoan, true);
   let status = 'em dia';
-  if (balance >= 0) status = 'quitado';
-  else if (selLoan.settlementId) status = 'acordo';
-  else if (totalInterest - totalPaid > monthlyInterest) status = 'em atraso';
-  return { ...selLoan, 
-      months, 
-      monthlyInterest, 
-      totalInterest, 
-      totalOwned, 
-      totalPaid, 
-      balance, 
-      status };
+  if (res.balance <= 0) {
+    res = calculateLoan(selLoan, false);
+    if (selLoan.settlementId) status = 'acordo';
+    else if (res.totalInterest - res.totalPaid > res.monthlyInterest) status = 'em atraso';
+  } else status = 'quitado';
+  return { 
+    ...selLoan, 
+    ...res, 
+    status,
+  };
 };
